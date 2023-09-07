@@ -1,0 +1,60 @@
+<mvc:View controllerName="zc6.module.emp.zemp01.controller.EmpMain"
+xmlns:t="sap.ui.table"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:u="sap.ui.unified"
+xmlns:c="sap.ui.core"
+xmlns="sap.m"
+height="100%">
+<Page
+showHeader="false"
+enableScrolling="false"
+class="sapUiContentPadding">
+<content>
+    <Table
+        items="{
+            path: '/Emp14_01Set',
+            sorter: {
+                path: 'Emp_No'
+            }}"
+        paste="onPaste"
+        ariaLabelledBy="title"
+        headerText="Employee List"
+        mode="MultiSelect">
+        <headerToolbar>
+            <OverflowToolbar style="Clear">
+                <Title text="Employee Master"/>
+                <ToolbarSpacer />
+                <Button text="Save" press="onSave"/>
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column width="auto" minScreenWidth="Tablet"
+            demandPopin="true">
+                <Text text="Company" />
+            </Column>
+            <Column width="auto" minScreenWidth="Small"
+            demandPopin="true">
+                <Text text="EmpNo" />
+            </Column>
+            <Column width="auto">
+                <Text text="EmpName" />
+            </Column>
+            <Column width="auto" 
+            demandPopin="false">
+                <Text text="Address" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+            <cells>
+                <Input value="{Company}" liveChange=".onChnage" editable="false"/>
+                <Input value="{Emp_No}" liveChange=".onChnage" editable="false"/>
+                <Input value="{Emp_Name}" liveChange=".onChnage"/>
+                <Input value="{Address}" liveChange=".onChnage"/>
+            </cells>
+        </ColumnListItem>
+        </items>
+    </Table>
+</content>
+</Page>
+</mvc:View>

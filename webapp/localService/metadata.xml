@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC6_STD14_01_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Emp14_01" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Company"/>
+                    <PropertyRef Name="Emp_No"/>
+                </Key>
+                <Property Name="Company" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:updatable="false"/>
+                <Property Name="Emp_No" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Employee Number" sap:updatable="false"/>
+                <Property Name="Emp_Name" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Employee Name"/>
+                <Property Name="Address" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Employee Address"/>
+                <Property Name="Depart" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Employee Department"/>
+            </EntityType>
+            <EntityType Name="Emp14_02" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Company"/>
+                    <PropertyRef Name="Emp_No"/>
+                </Key>
+                <Property Name="Company" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:updatable="false"/>
+                <Property Name="Emp_No" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Employee Number" sap:updatable="false"/>
+                <Property Name="Zimage" Type="Edm.String" sap:unicode="false" sap:label="Emp image"/>
+            </EntityType>
+            <EntityContainer Name="ZC6_STD14_01_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Emp14_01Set" EntityType="ZC6_STD14_01_SRV.Emp14_01" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Emp14_02Set" EntityType="ZC6_STD14_01_SRV.Emp14_02" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZC6_STD14_01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZC6_STD14_01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
