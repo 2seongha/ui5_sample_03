@@ -10,21 +10,20 @@ showHeader="false"
 enableScrolling="false"
 class="sapUiContentPadding">
 <content>
+    <!-- <Text text="{internalTable>/Emp14_01Set/0/Company}"></Text> -->
     <Table
-        items="{
-            path: '/Emp14_01Set',
-            sorter: {
-                path: 'Emp_No'
-            }}"
+        id="myTable"
+        items="{internalTable>/Emp14_01Set}"
+        
         paste="onPaste"
         ariaLabelledBy="title"
-        headerText="Employee List"
         mode="MultiSelect">
         <headerToolbar>
             <OverflowToolbar style="Clear">
                 <Title text="Employee Master"/>
                 <ToolbarSpacer />
                 <Button text="Save" press="onSave"/>
+                <Button text="Add" press="onAdd"/>
             </OverflowToolbar>
         </headerToolbar>
         <columns>
@@ -47,10 +46,10 @@ class="sapUiContentPadding">
         <items>
             <ColumnListItem>
             <cells>
-                <Input value="{Company}" liveChange=".onChnage" editable="false"/>
-                <Input value="{Emp_No}" liveChange=".onChnage" editable="false"/>
-                <Input value="{Emp_Name}" liveChange=".onChnage"/>
-                <Input value="{Address}" liveChange=".onChnage"/>
+                <Input value="{internalTable>Company}" liveChange=".onChnage" editable="false"/>
+                <Input value="{internalTable>Emp_No}" liveChange=".onChnage" editable="false"/>
+                <Input value="{internalTable>Emp_Name}" liveChange=".onChnage"/>
+                <Input value="{internalTable>Address}" liveChange=".onChnage"/>
             </cells>
         </ColumnListItem>
         </items>
