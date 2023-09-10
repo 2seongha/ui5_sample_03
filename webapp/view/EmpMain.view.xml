@@ -13,27 +13,28 @@
             <ScrollContainer
                 height="50%"
                 vertical="true"
-                focusable="false"
             >
                 <Table
                     growing="true" growingThreshold="50"
                     id="myTable"
                     items="{
-            path:'/Emp14_01Set',
-            sorter:{
-                path:'Emp_No'
-            }
-        }"
-                    ariaLabelledBy="title"
+                        path:'/Emp14_01Set',
+                        sorter:{
+                            path:'Emp_No'
+                        }
+                    }"
                     mode="MultiSelect"
                     sticky="HeaderToolbar,ColumnHeaders">
                     <headerToolbar>
                         <OverflowToolbar style="Standard">
                             <Title text="Employee Master" />
                             <ToolbarSpacer />
-                            <Button text="Save" press="onSave" />
-                            <Button text="Add" press="onAdd" />
-                            <Button text="Delete" press="onDelete" />
+                            <SearchField width="20%" search=".onFilterInvoices" placeholder="이름" />
+                            <Button text="Save" press="onSave" icon="sap-icon://save"
+                                type="Emphasized" />
+                            <Button text="Add" press="onAdd" icon="sap-icon://add" type="Success" />
+                            <Button text="Delete" press="onDelete" icon="sap-icon://delete"
+                                type="Negative" />
                         </OverflowToolbar>
                     </headerToolbar>
                     <columns>
@@ -43,10 +44,10 @@
                         </Column>
                         <Column width="auto" minScreenWidth="Small"
                             demandPopin="true">
-                            <Text text="EmpNo" />
+                            <Text text="Employee No." />
                         </Column>
                         <Column width="auto">
-                            <Text text="EmpName" />
+                            <Text text="Employee Name" />
                         </Column>
                         <Column width="auto"
                             demandPopin="false">
@@ -54,10 +55,12 @@
                         </Column>
                     </columns>
                     <items>
-                        <ColumnListItem id="lisItemForTable" >
+                        <ColumnListItem id="lisItemForTable">
                             <cells>
-                                <Input value="{Company}" liveChange=".onChnage" editable="false" class="myCustomKeyField"/>
-                                <Input value="{Emp_No}" liveChange=".onChnage" editable="false" class="myCustomKeyField"/>
+                                <Input value="{Company}" liveChange=".onChnage" editable="false"
+                                    class="myCustomKeyField" />
+                                <Input value="{Emp_No}" liveChange=".onChnage" editable="false"
+                                    class="myCustomKeyField" />
                                 <Input value="{Emp_Name}" liveChange=".onChnage" />
                                 <Input value="{Address}" liveChange=".onChnage" />
                             </cells>

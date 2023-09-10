@@ -1,4 +1,12 @@
 .myCustomKeyField input{
-  background-color: rgb(198, 233, 215);
-  border-bottom: 1px solid rgb(95, 124, 111);
+  background-color: rgba(149, 197, 255, 0.507);
+  border-bottom: 1px solid rgb(95, 107, 124);
+}
+
+.sapMLIBFocusable:focus{
+  outline: none;
+}
+
+.sapMInputBaseInner:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):focus {
+  outline: none;
 }

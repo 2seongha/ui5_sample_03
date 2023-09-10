@@ -1,5 +1,6 @@
 let oDelete = [],
-    oView;
+    oView,
+    aFilter = [];
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast"
@@ -25,23 +26,26 @@ sap.ui.define([
                     }
                     oModel.submitChanges();
                     MessageToast.show("저장 완료")
-                }else{
-                    oModel.resetChanges(null,true,true);
+                } else {
+                    oModel.resetChanges(null, true, true);
                 }
                 oDelete = [];
-                this.getView().byId("myTable").bindItems({
+                var oTable = this.byId("myTable");
+                oTable.bindItems({
                     path: "/Emp14_01Set",
                     sorter: new sap.ui.model.Sorter('Emp_No'),
                     template: new sap.m.ColumnListItem({
                         type: "Active",
                         cells: [
-                            new sap.m.Input({ value: "{Company}", liveChange: this.onChnage ,editable:false}).addStyleClass('myCustomKeyField'),
-                            new sap.m.Input({ value: "{Emp_No}", liveChange:  this.onChnage ,editable:false}).addStyleClass('myCustomKeyField'),
-                            new sap.m.Input({ value: "{Emp_Name}", liveChange:  this.onChnage }),
-                            new sap.m.Input({ value: "{Address}", liveChange:  this.onChnage })
+                            new sap.m.Input({ value: "{Company}", liveChange: this.onChnage, editable: false }).addStyleClass('myCustomKeyField'),
+                            new sap.m.Input({ value: "{Emp_No}", liveChange: this.onChnage, editable: false }).addStyleClass('myCustomKeyField'),
+                            new sap.m.Input({ value: "{Emp_Name}", liveChange: this.onChnage }),
+                            new sap.m.Input({ value: "{Address}", liveChange: this.onChnage })
                         ]
                     })
                 });
+                var oBinding = oTable.getBinding("items");
+                oBinding.filter(aFilter);
             },
             onAdd: function () {
                 const oProperties = {
@@ -58,10 +62,10 @@ sap.ui.define([
                 const lisItemForTable = new sap.m.ColumnListItem({
                     type: "Active",
                     cells: [
-                        new sap.m.Input({ value: "{Company}", liveChange: this.onChnage ,editable:true}),
-                        new sap.m.Input({ value: "{Emp_No}", liveChange:  this.onChnage ,editable:true}),
-                        new sap.m.Input({ value: "{Emp_Name}", liveChange:  this.onChnage }),
-                        new sap.m.Input({ value: "{Address}", liveChange:  this.onChnage })
+                        new sap.m.Input({ value: "{Company}", liveChange: this.onChnage, editable: true }),
+                        new sap.m.Input({ value: "{Emp_No}", liveChange: this.onChnage, editable: true }),
+                        new sap.m.Input({ value: "{Emp_Name}", liveChange: this.onChnage }),
+                        new sap.m.Input({ value: "{Address}", liveChange: this.onChnage })
                     ]
                 })
 
@@ -76,10 +80,10 @@ sap.ui.define([
 
                 const aSelectedItem = table.getSelectedItem().getParent()._aSelectedPaths;
                 for (let i = 0; i < aSelectedItem.length; i++) {
-                    
-                    if(aSelectedItem[i].includes('id-')){
-                        table.getModel().resetChanges([aSelectedItem[i]],false,true);
-                    }else{
+
+                    if (aSelectedItem[i].includes('id-')) {
+                        table.getModel().resetChanges([aSelectedItem[i]], false, true);
+                    } else {
                         oDelete.push(aSelectedItem[i]);
                     }
                 }
@@ -92,8 +96,23 @@ sap.ui.define([
                 const uri = oEvent.getSource().getParent().getBindingContext().sPath;
                 const changeColumn = oEvent.getSource().mBindingInfos.value.binding.sPath;
                 const changeValue = oEvent.getParameters().value;
-                
+
                 oView.getModel().setProperty(uri + `/${changeColumn}`, changeValue)
+            },
+
+            onFilterInvoices: function (oEvent) {
+
+                // build filter array
+                aFilter = [];
+                var sQuery = oEvent.getParameter("query");
+                if (sQuery) {
+                    aFilter.push(new sap.ui.model.Filter("Emp_Name", sap.ui.model.FilterOperator.Contains, sQuery));
+                }
+
+                // filter binding
+                var oTable = this.byId("myTable");
+                var oBinding = oTable.getBinding("items");
+                oBinding.filter(aFilter);
             }
         });
     });
