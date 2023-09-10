@@ -24,26 +24,24 @@ sap.ui.define([
                         }
                     }
                     oModel.submitChanges();
-                    // MessageToast.show("저장 완료")
+                    MessageToast.show("저장 완료")
+                }else{
+                    oModel.resetChanges(null,true,true);
                 }
                 oDelete = [];
-                this.getView().byId("myTable").removeAllItems();
-                console.log(this.getView().byId("myTable").getBindingInfo("items"))
-                this.getView().byId("myTable").unbindItems();
                 this.getView().byId("myTable").bindItems({
                     path: "/Emp14_01Set",
                     sorter: new sap.ui.model.Sorter('Emp_No'),
                     template: new sap.m.ColumnListItem({
                         type: "Active",
                         cells: [
-                            new sap.m.Input({ value: "{Company}", liveChange: this.onChnage ,editable:false}),
-                            new sap.m.Input({ value: "{Emp_No}", liveChange:  this.onChnage ,editable:false}),
+                            new sap.m.Input({ value: "{Company}", liveChange: this.onChnage ,editable:false}).addStyleClass('myCustomKeyField'),
+                            new sap.m.Input({ value: "{Emp_No}", liveChange:  this.onChnage ,editable:false}).addStyleClass('myCustomKeyField'),
                             new sap.m.Input({ value: "{Emp_Name}", liveChange:  this.onChnage }),
                             new sap.m.Input({ value: "{Address}", liveChange:  this.onChnage })
                         ]
                     })
                 });
-                console.log(this.getView().byId("myTable").getBindingInfo("items"))
             },
             onAdd: function () {
                 const oProperties = {
@@ -78,7 +76,12 @@ sap.ui.define([
 
                 const aSelectedItem = table.getSelectedItem().getParent()._aSelectedPaths;
                 for (let i = 0; i < aSelectedItem.length; i++) {
-                    oDelete.push(aSelectedItem[i]);
+                    
+                    if(aSelectedItem[i].includes('id-')){
+                        table.getModel().resetChanges([aSelectedItem[i]],false,true);
+                    }else{
+                        oDelete.push(aSelectedItem[i]);
+                    }
                 }
                 const aSelectedItems = table.getSelectedItems();
                 for (let i = 0; i < aSelectedItems.length; i++) {
@@ -89,7 +92,7 @@ sap.ui.define([
                 const uri = oEvent.getSource().getParent().getBindingContext().sPath;
                 const changeColumn = oEvent.getSource().mBindingInfos.value.binding.sPath;
                 const changeValue = oEvent.getParameters().value;
-                console.log(oEvent)
+                
                 oView.getModel().setProperty(uri + `/${changeColumn}`, changeValue)
             }
         });
