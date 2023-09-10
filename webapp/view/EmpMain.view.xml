@@ -56,8 +56,8 @@
                     <items>
                         <ColumnListItem id="lisItemForTable" >
                             <cells>
-                                <Input value="{Company}" liveChange=".onChnage" editable="true" />
-                                <Input value="{Emp_No}" liveChange=".onChnage" editable="true" />
+                                <Input value="{Company}" liveChange=".onChnage" editable="false" />
+                                <Input value="{Emp_No}" liveChange=".onChnage" editable="false" />
                                 <Input value="{Emp_Name}" liveChange=".onChnage" />
                                 <Input value="{Address}" liveChange=".onChnage" />
                             </cells>
