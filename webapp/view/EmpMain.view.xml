@@ -1,59 +1,70 @@
 <mvc:View controllerName="zc6.module.emp.zemp01.controller.EmpMain"
-xmlns:t="sap.ui.table"
-xmlns:mvc="sap.ui.core.mvc"
-xmlns:u="sap.ui.unified"
-xmlns:c="sap.ui.core"
-xmlns="sap.m"
-height="100%">
-<Page
-showHeader="false"
-enableScrolling="false"
-class="sapUiContentPadding">
-<content>
-    <!-- <Text text="{internalTable>/Emp14_01Set/0/Company}"></Text> -->
-    <Table
-        id="myTable"
-        items="{internalTable>/Emp14_01Set}"
-        
-        paste="onPaste"
-        ariaLabelledBy="title"
-        mode="MultiSelect">
-        <headerToolbar>
-            <OverflowToolbar style="Clear">
-                <Title text="Employee Master"/>
-                <ToolbarSpacer />
-                <Button text="Save" press="onSave"/>
-                <Button text="Add" press="onAdd"/>
-            </OverflowToolbar>
-        </headerToolbar>
-        <columns>
-            <Column width="auto" minScreenWidth="Tablet"
-            demandPopin="true">
-                <Text text="Company" />
-            </Column>
-            <Column width="auto" minScreenWidth="Small"
-            demandPopin="true">
-                <Text text="EmpNo" />
-            </Column>
-            <Column width="auto">
-                <Text text="EmpName" />
-            </Column>
-            <Column width="auto" 
-            demandPopin="false">
-                <Text text="Address" />
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem>
-            <cells>
-                <Input value="{internalTable>Company}" liveChange=".onChnage" editable="false"/>
-                <Input value="{internalTable>Emp_No}" liveChange=".onChnage" editable="false"/>
-                <Input value="{internalTable>Emp_Name}" liveChange=".onChnage"/>
-                <Input value="{internalTable>Address}" liveChange=".onChnage"/>
-            </cells>
-        </ColumnListItem>
-        </items>
-    </Table>
-</content>
-</Page>
+    xmlns:t="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns="sap.m"
+    height="100%">
+    <Page
+        showHeader="false"
+        enableScrolling="true"
+        class="sapUiResponsiveContentPadding">
+        <content>
+            <ScrollContainer
+                height="50%"
+                vertical="true"
+                focusable="false"
+            >
+                <Table
+                    growing="true" growingThreshold="50"
+                    id="myTable"
+                    items="{
+            path:'/Emp14_01Set',
+            sorter:{
+                path:'Emp_No'
+            }
+        }"
+                    ariaLabelledBy="title"
+                    mode="MultiSelect"
+                    sticky="HeaderToolbar,ColumnHeaders">
+                    <headerToolbar>
+                        <OverflowToolbar style="Standard">
+                            <Title text="Employee Master" />
+                            <ToolbarSpacer />
+                            <Button text="Save" press="onSave" />
+                            <Button text="Add" press="onAdd" />
+                            <Button text="Delete" press="onDelete" />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="auto" minScreenWidth="Tablet"
+                            demandPopin="true">
+                            <Text text="Company" />
+                        </Column>
+                        <Column width="auto" minScreenWidth="Small"
+                            demandPopin="true">
+                            <Text text="EmpNo" />
+                        </Column>
+                        <Column width="auto">
+                            <Text text="EmpName" />
+                        </Column>
+                        <Column width="auto"
+                            demandPopin="false">
+                            <Text text="Address" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="lisItemForTable" >
+                            <cells>
+                                <Input value="{Company}" liveChange=".onChnage" editable="true" />
+                                <Input value="{Emp_No}" liveChange=".onChnage" editable="true" />
+                                <Input value="{Emp_Name}" liveChange=".onChnage" />
+                                <Input value="{Address}" liveChange=".onChnage" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </content>
+    </Page>
 </mvc:View>
