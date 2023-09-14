@@ -1,12 +1,28 @@
-.myCustomKeyField input{
-  background-color: rgba(149, 197, 255, 0.507);
-  border-bottom: 1px solid rgb(95, 107, 124);
+section {
+  background-color: rgb(236, 236, 236);
 }
 
-.sapMLIBFocusable:focus{
-  outline: none;
+.hideScroll {
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll !important;
 }
 
-.sapMInputBaseInner:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):focus {
-  outline: none;
+.hideScroll::-webkit-scrollbar {
+  background-color: #fff0 !important;
+}
+.myCustomLayout {
+  height: 100%;
+}
+
+.myCustomLayout > div{
+  height: 50%;
+}
+
+.myCustomLayout > div > div{
+  border-radius: .75rem;
+}
+
+.myCustomInput input{
+  box-shadow: 1px 1px 1px 1px rgba(143, 143, 143, 0.541) inset;
+  background-color: rgb(236, 236, 236);
 }

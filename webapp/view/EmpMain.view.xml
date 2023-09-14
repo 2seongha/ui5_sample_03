@@ -3,16 +3,19 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:u="sap.ui.unified"
     xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
     xmlns="sap.m"
     height="100%">
     <Page
         showHeader="false"
         enableScrolling="true"
-        class="sapUiResponsiveContentPadding">
+        >
         <content>
+            <l:VerticalLayout class="sapUiContentPadding myCustomLayout">
             <ScrollContainer
-                height="50%"
+                height="100%"
                 vertical="true"
+                class="hideScroll"
             >
                 <Table
                     growing="true" growingThreshold="50"
@@ -61,18 +64,19 @@
                                     class="myCustomKeyField" />
                                 <Input value="{Emp_No}" liveChange=".onChnage" editable="false"
                                     class="myCustomKeyField" />
-                                <Input value="{Emp_Name}" liveChange=".onChnage" />
-                                <Input value="{Address}" liveChange=".onChnage" />
+                                <Input value="{Emp_Name}" liveChange=".onChnage" class="myCustomInput"/>
+                                <Input value="{Address}" liveChange=".onChnage" class="myCustomInput"/>
                             </cells>
                         </ColumnListItem>
                     </items>
                 </Table>
             </ScrollContainer>
-            <Carousel class="sapUiContentPadding" loop="true" height="50%">
+            <Carousel  loop="true" height="100%">
                 <Text text="1번입니당"></Text>
                 <Text text="2번입니당"></Text>
                 <Text text="3번입니당"></Text>
             </Carousel>
+        </l:VerticalLayout>
         </content>
     </Page>
 </mvc:View>
