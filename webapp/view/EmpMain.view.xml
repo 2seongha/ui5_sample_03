@@ -68,6 +68,11 @@
                     </items>
                 </Table>
             </ScrollContainer>
+            <Carousel class="sapUiContentPadding" loop="true" height="50%">
+                <Text text="1번입니당"></Text>
+                <Text text="2번입니당"></Text>
+                <Text text="3번입니당"></Text>
+            </Carousel>
         </content>
     </Page>
 </mvc:View>
