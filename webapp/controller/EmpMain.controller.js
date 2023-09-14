@@ -1,54 +1,69 @@
 let oDelete = [],
     oView,
+    oTable,
     aFilter = [];
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageToast) {
+    function (Controller, MessageToast, MessageBox) {
         "use strict";
 
         return Controller.extend("zc6.module.emp.zemp01.controller.EmpMain", {
             onInit: function () {
                 oView = this.getView();
+                oTable = this.byId("myTable");
+                
             },
-            handleLoadItems: function(oControlEvent) {
+            handleLoadItems: function (oControlEvent) {
                 oControlEvent.getSource().getBinding("items").resume();
             },
             onSave: function () {
                 const oModel = this.getView().byId("myTable").getModel();
-                const check_confirm = confirm("저장 하시겠습니까?");
-                if (check_confirm) {
-                    if (oDelete) {
-                        for (let i = 0; i < oDelete.length; i++) {
-                            oModel.remove(oDelete[i]);
+                const oTable = this.byId("myTable");
+                const onChnage = this.onChnage;
+                MessageBox.confirm("저장 하시겠습니까?", {
+                    title: "알림",                                    // default
+                    onClose: function (oAction) {
+                        if (oAction === "네") {
+                            if (oDelete) {
+                                for (let i = 0; i < oDelete.length; i++) {
+                                    oModel.remove(oDelete[i]);
+                                }
+                            }
+                            oModel.submitChanges();
+                            MessageToast.show("저장 완료")
+                        } else {
+                            oModel.resetChanges(null, true, true);
                         }
-                    }
-                    oModel.submitChanges();
-                    MessageToast.show("저장 완료")
-                } else {
-                    oModel.resetChanges(null, true, true);
-                }
-                oDelete = [];
-                var oTable = this.byId("myTable");
-                oTable.bindItems({
-                    path: "/Emp14_01Set",
-                    sorter: new sap.ui.model.Sorter('Emp_No'),
-                    template: new sap.m.ColumnListItem({
-                        type: "Active",
-                        cells: [
-                            new sap.m.Input({ value: "{Company}", liveChange: this.onChnage, editable: false }).addStyleClass('myCustomKeyField'),
-                            new sap.m.Input({ value: "{Emp_No}", liveChange: this.onChnage, editable: false }).addStyleClass('myCustomKeyField'),
-                            new sap.m.Input({ value: "{Emp_Name}", liveChange: this.onChnage }),
-                            new sap.m.Input({ value: "{Address}", liveChange: this.onChnage })
-                        ]
-                    })
+                        oDelete = [];
+                        // var oTable = this.byId("myTable");
+                        oTable.bindItems({
+                            path: "/Emp14_01Set",
+                            sorter: new sap.ui.model.Sorter('Emp_No'),
+                            template: new sap.m.ColumnListItem({
+                                type: "Active",
+                                cells: [
+                                    new sap.m.Input({ value: "{Company}", liveChange: onChnage, editable: false }).addStyleClass('myCustomKeyField'),
+                                    new sap.m.Input({ value: "{Emp_No}", liveChange: onChnage, editable: false }).addStyleClass('myCustomKeyField'),
+                                    new sap.m.Input({ value: "{Emp_Name}", liveChange: onChnage }),
+                                    new sap.m.Input({ value: "{Address}", liveChange: onChnage })
+                                ]
+                            })
+                        });
+                        var oBinding = oTable.getBinding("items");
+                        oBinding.filter(aFilter);
+                    },                                    // default
+                    styleClass: "",                                      // default
+                    actions: ["네","아니오"],         // default
+                    emphasizedAction: "네",        // default
+                    initialFocus: null,                                  // default
+                    textDirection: sap.ui.core.TextDirection.Inherit     // default
                 });
-                var oBinding = oTable.getBinding("items");
-                oBinding.filter(aFilter);
             },
             onAdd: function () {
                 const oProperties = {
