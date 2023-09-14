@@ -15,6 +15,9 @@ sap.ui.define([
             onInit: function () {
                 oView = this.getView();
             },
+            handleLoadItems: function(oControlEvent) {
+                oControlEvent.getSource().getBinding("items").resume();
+            },
             onSave: function () {
                 const oModel = this.getView().byId("myTable").getModel();
                 const check_confirm = confirm("저장 하시겠습니까?");

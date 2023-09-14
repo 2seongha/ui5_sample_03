@@ -1,10 +1,12 @@
-section {
-  background-color: rgb(236, 236, 236);
+:focus, :focus-visible, *[data-focus] {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: inherit !important;
 }
-
 .hideScroll {
   background-color: rgb(255, 255, 255);
   overflow-y: scroll !important;
+  
 }
 
 .hideScroll::-webkit-scrollbar {
@@ -20,9 +22,12 @@ section {
 
 .myCustomLayout > div > div{
   border-radius: .75rem;
+  /* outline: 1px solid rgb(196, 196, 196); */
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(43, 89, 109, 0.32) 0px 2px 16px 0px;
 }
 
 .myCustomInput input{
-  box-shadow: 1px 1px 1px 1px rgba(143, 143, 143, 0.541) inset;
-  background-color: rgb(236, 236, 236);
+  box-shadow: 1px 1px 1px 1px rgba(119, 119, 119, 0.541) inset;
+  background-color: rgb(240, 240, 240);
+  outline: none;
 }
