@@ -46,12 +46,11 @@ sap.ui.define([
                             path: "/Emp14_01Set",
                             sorter: new sap.ui.model.Sorter('Emp_No'),
                             template: new sap.m.ColumnListItem({
-                                type: "Active",
                                 cells: [
                                     new sap.m.Input({ value: "{Company}", liveChange: onChnage, editable: false }).addStyleClass('myCustomKeyField'),
                                     new sap.m.Input({ value: "{Emp_No}", liveChange: onChnage, editable: false }).addStyleClass('myCustomKeyField'),
-                                    new sap.m.Input({ value: "{Emp_Name}", liveChange: onChnage }),
-                                    new sap.m.Input({ value: "{Address}", liveChange: onChnage })
+                                    new sap.m.Input({ value: "{Emp_Name}", liveChange: onChnage }).addStyleClass('myCustomInput'),
+                                    new sap.m.Input({ value: "{Address}", liveChange: onChnage }).addStyleClass('myCustomInput')
                                 ]
                             })
                         });
@@ -78,12 +77,11 @@ sap.ui.define([
                 })
 
                 const lisItemForTable = new sap.m.ColumnListItem({
-                    type: "Active",
                     cells: [
-                        new sap.m.Input({ value: "{Company}", liveChange: this.onChnage, editable: true }),
-                        new sap.m.Input({ value: "{Emp_No}", liveChange: this.onChnage, editable: true }),
-                        new sap.m.Input({ value: "{Emp_Name}", liveChange: this.onChnage }),
-                        new sap.m.Input({ value: "{Address}", liveChange: this.onChnage })
+                        new sap.m.Input({ value: "{Company}", liveChange: this.onChnage, editable: true }).addStyleClass('myCustomInput'),
+                        new sap.m.Input({ value: "{Emp_No}", liveChange: this.onChnage, editable: true }).addStyleClass('myCustomInput'),
+                        new sap.m.Input({ value: "{Emp_Name}", liveChange: this.onChnage }).addStyleClass('myCustomInput'),
+                        new sap.m.Input({ value: "{Address}", liveChange: this.onChnage }).addStyleClass('myCustomInput')
                     ]
                 })
 

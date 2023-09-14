@@ -19,7 +19,9 @@
                     class="hideScroll"
                 >
                     <Table
-                        growing="true" growingThreshold="50"
+                        growing="true" 
+                        growingThreshold="8"
+                        growingScrollToLoad="true"
                         id="myTable"
                         items="{
                         path:'/Emp14_01Set',

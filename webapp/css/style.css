@@ -9,6 +9,10 @@
   
 }
 
+.myCustomKeyField input{
+  background-color: white;
+}
+
 .hideScroll::-webkit-scrollbar {
   background-color: #fff0 !important;
 }
